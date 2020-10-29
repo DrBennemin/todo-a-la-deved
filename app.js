@@ -63,7 +63,7 @@ function filterTodo(filter) {
         todo.style.display = "flex";
         break;
       case "completed":
-        if (todo.classList.contains("completed-btn")) {
+        if (todo.classList.contains("completed")) {
           todo.style.display = "flex";
         } else {
           todo.style.display = "none";
@@ -75,7 +75,6 @@ function filterTodo(filter) {
         } else {
           todo.style.display = "none";
         }
-        break;
     }
   });
 }
@@ -129,7 +128,7 @@ function removeLocalTodos(todo) {
   } else {
     todos = JSON.parse(localStorage.getItem("todos"));
   }
-  const todoIndes = todo.children[0].innerText;
-  todos.splice(todo.indexOf(todoIndex), 1);
+  const todoIndex = todo.children[0].innerText;
+  todos.splice(todos.indexOf(todoIndex), 1);
   localStorage.setItem("todos", JSON.stringify(todos));
 }
