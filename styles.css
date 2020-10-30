@@ -110,19 +110,16 @@ select {
   appearance: none;
   outline: none;
   border: none;
+  color: #023e8a;
+  width: 10rem;
+  cursor: pointer;
+  padding: 1rem;
 }
 
 .select {
   margin: 1rem;
   position: relative;
   overflow: hidden;
-}
-
-select {
-  color: #023e8a;
-  width: 10rem;
-  cursor: pointer;
-  padding: 1rem;
 }
 
 .select::after {
