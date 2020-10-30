@@ -8,7 +8,7 @@ const filterOption = document.querySelector(".filter-todo");
 document.addEventListener("DOMContentLoaded", getTodos);
 todoButton.addEventListener("click", addTodo);
 todoList.addEventListener("click", deleteCheck);
-filterOption.addEventListener("click", filterTodo);
+filterOption.addEventListener("change", filterTodo);
 
 //Functions
 function addTodo(event) {
@@ -38,8 +38,8 @@ function addTodo(event) {
   todoInput.value = "";
 }
 
-function deleteCheck(e) {
-  const item = e.target;
+function deleteCheck(event) {
+  const item = event.target;
   if (item.classList[0] === "delete-btn") {
     const todo = item.parentElement;
     todo.classList.add("fall");
@@ -58,25 +58,22 @@ function deleteCheck(e) {
 function filterTodo(filter) {
   const todos = todoList.childNodes;
   todos.forEach(function (todo) {
+    const selected = todo.classList.contains("completed");
     switch (filter.target.value) {
       case "all":
-        todo.style.display = "flex";
+        displayItem("flex", todo);
         break;
       case "completed":
-        if (todo.classList.contains("completed")) {
-          todo.style.display = "flex";
-        } else {
-          todo.style.display = "none";
-        }
+        displayItem(selected ? "flex" : "none", todo);
         break;
       case "uncompleted":
-        if (!todo.classList.contains("completed")) {
-          todo.style.display = "flex";
-        } else {
-          todo.style.display = "none";
-        }
+        displayItem(!selected ? "flex" : "none", todo);
     }
   });
+}
+
+function displayItem(attributeValue, todo) {
+  todo.style.display = attributeValue;
 }
 
 function saveLocalTodos(todo) {
